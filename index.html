@@ -3,701 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marirena Bafaloukou — Researcher in Machine Learning for Parkinson's Disease</title>
+  <title>Marirena Bafaloukou | Machine Learning and Clinical Data Science</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #e8f4fd;
-      --ink: #0d2137;
-      --muted: #4a7a9b;
-      --accent: #1a7abf;
-      --accent-light: #c8e6f7;
-      --red: #0e6fa3;
-      --border: #b8d9ee;
-      --card: #f0f9ff;
-      --mono: 'DM Mono', monospace;
-      --serif: 'EB Garamond', serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    .hero {
-      padding: 5rem 0 0;
-      animation: rise 0.8s ease both;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .photo-placeholder {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      border: 3px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: var(--accent);
-      font-family: var(--serif);
-      font-style: italic;
-    }
-
-    .orcid-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-top: 0.8rem;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.5rem;
-      background: var(--card);
-    }
-
-    .orcid-dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      background: #a6ce39;
-      flex-shrink: 0;
-    }
-
-    .hero-text h1 {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-text h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .role-line {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: #1a3d58;
-      max-width: 560px;
-      line-height: 1.7;
-    }
-
-    .location-line {
-      margin-top: 1rem;
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(232,244,253,0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      margin-top: 3rem;
-      z-index: 100;
-      animation: rise 0.8s 0.1s ease both;
-    }
-
-    nav .inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      display: flex;
-    }
-
-    nav a {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 1rem 1.2rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-      display: block;
-    }
-
-    nav a:hover, nav a.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    section {
-      padding: 4.5rem 0;
-      border-bottom: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .subsection-label {
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 2.5rem 0 1.2rem;
-      border-left: 2px solid var(--accent);
-      padding-left: 0.7rem;
-    }
-
-    .pull-quote {
-      font-size: 1.15rem;
-      font-style: italic;
-      border-left: 3px solid var(--accent);
-      padding-left: 1.3rem;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-      line-height: 1.65;
-    }
-
-    #about p { color: #1a3d58; margin-bottom: 1rem; }
-    #about p:last-of-type { margin-bottom: 0; }
-
-    .row-item {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 1.5rem;
-      padding: 1.3rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-
-    .row-item:last-child { border-bottom: none; }
-
-    .row-year {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      padding-top: 0.15rem;
-    }
-
-    .row-body strong {
-      display: block;
-      font-weight: 500;
-      font-size: 0.98rem;
-      margin-bottom: 0.2rem;
-      line-height: 1.4;
-    }
-
-    .row-body span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .pub {
-      padding: 1.8rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .pub:last-child { border-bottom: none; }
-
-    .pub-type {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    .pub h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-      line-height: 1.45;
-      margin-bottom: 0.5rem;
-    }
-
-    .pub-meta, .pub-authors {
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .pub-authors { font-style: italic; }
-    .pub-authors strong { color: var(--ink); font-style: normal; font-weight: 500; }
-
-    .doi-link {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.2rem 0.6rem;
-      transition: all 0.2s;
-    }
-
-    .doi-link:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    .research-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .r-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-
-    .r-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(26,122,191,0.12);
-    }
-
-    .r-tag {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.1rem 0.45rem;
-      display: inline-block;
-      margin-bottom: 0.7rem;
-    }
-
-    .r-card h3 {
-      font-size: 0.98rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .r-card p {
-      font-size: 0.86rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .teach-item {
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .teach-item:last-child { border-bottom: none; }
-
-    .teach-item strong {
-      display: block;
-      font-weight: 500;
-      font-size: 0.98rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .teach-item span {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .c-link {
-      display: block;
-      padding: 1.3rem 1rem;
-      border: 1px solid var(--border);
-      text-align: center;
-      transition: all 0.2s;
-      background: var(--card);
-    }
-
-    .c-link:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .c-link:hover .c-icon, .c-link:hover .c-text, .c-link:hover .c-label {
-      color: white !important;
-    }
-
-    .c-icon {
-      font-size: 1.4rem;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-
-    .c-text {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.2rem;
-      color: var(--ink);
-    }
-
-    .c-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      word-break: break-all;
-    }
-
-    .address-note {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-family: var(--mono);
-      letter-spacing: 0.03em;
-      line-height: 1.8;
-    }
-
-    footer {
-      padding: 2.5rem 0;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 680px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .research-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .row-item { grid-template-columns: 1fr; gap: 0.3rem; }
-      nav a { padding: 0.8rem 0.7rem; font-size: 0.58rem; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="index.html" aria-label="Homepage">
+        <span class="brand-mark">Machine Learning · Health Data</span>
+        <span class="brand-name">Marirena Bafaloukou</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html" data-page="home">Home</a>
+        <a href="research.html" data-page="research">Research</a>
+        <a href="publications.html" data-page="publications">Publications</a>
+        <a href="contact.html" data-page="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="container">
-  <div class="hero">
-    <div class="hero-grid">
-      <div>
-        <img src="HeadshotBafaloukou_page-0001.jpg" style="width:140px; height:140px; border-radius:50%; object-fit:cover; border:3px solid var(--border);">
-        <div class="orcid-badge">
-          <div class="orcid-dot"></div>
-          0009-0006-1602-9520
+  <main class="page">
+    <div class="shell">
+      <section class="hero-panel" data-reveal>
+        <div class="hero-grid">
+          <div class="portrait-wrap">
+            <div class="portrait-card">
+              <img src="HeadshotBafaloukou_page-0001.jpg" alt="Portrait of Marirena Bafaloukou">
+            </div>
+          </div>
+          <div class="hero-copy">
+            <div class="eyebrow">Machine Learning, Deep Learning, and Clinical AI</div>
+            <h1>Building <span>deep learning</span> and representation learning systems for clinical data.</h1>
+            <p class="hero-lead">
+              Marirena Bafaloukou develops machine learning systems across proteomics, electronic health records, and wearable data, with a focus on deep learning, representation learning, risk prediction, and biomarker discovery for Parkinson's disease.
+            </p>
+            <div class="hero-meta">
+              <div class="pill">Multimodal ML · Deep Learning</div>
+              <div class="pill">ORCID 0009-0006-1602-9520</div>
+              <div class="pill">Representation Learning · Clinical Data Science</div>
+            </div>
+            <div class="hero-actions">
+              <a class="button" href="research.html">Explore Research</a>
+              <a class="button-secondary" href="publications.html">View Publications</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="hero-text">
-        <h1>Marirena <em>Bafaloukou</em></h1>
-        <p class="role-line">Research Assistant &amp; PhD Candidate · Imperial College London</p>
-        <p class="hero-desc">
-          Developing machine learning methods to identify predictive and stratification biomarkers for Parkinson's Disease — integrating clinical proteomics, electronic health records, and smartwatch data.
-        </p>
-        <p class="location-line">📍 Brain Sciences · Sir Michael Uren Building · White City Campus · London</p>
-      </div>
+      </section>
+
+      <section class="content-panel" data-reveal>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-value">52k+</div>
+            <p class="stat-label">Participants in large-scale proteomics modelling for Parkinson's prediction</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value">3</div>
+            <p class="stat-label">Core data modalities: proteomics, electronic health records, and wearables</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value">2024</div>
+            <p class="stat-label">Start of the Imperial College London PhD program</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value">2</div>
+            <p class="stat-label">Peer-reviewed publications including The Lancet eClinicalMedicine</p>
+          </article>
+        </div>
+
+        <div class="grid-split">
+          <div>
+            <div class="section-kicker">Profile</div>
+            <h2 class="section-heading">Machine learning for high-value biomedical data.</h2>
+            <p class="page-intro">
+              Her work focuses on production-minded modelling problems in healthcare data: multimodal prediction, clinical stratification, deep learning architectures, and representation learning for complex patient signals. Earlier projects in dementia monitoring produced interpretable models for remote sensing and longitudinal behavioural data.
+            </p>
+          </div>
+          <aside class="quote-block">
+            Machine learning across proteomics, wearables, and health records, with an emphasis on models that can generalize, explain, and transfer.
+          </aside>
+        </div>
+      </section>
+
+      <section class="content-panel" data-reveal>
+        <div class="section-kicker">Highlights</div>
+        <h2 class="section-heading">Core strengths across modelling, data fusion, and translation.</h2>
+        <div class="card-grid">
+          <article class="feature-card">
+            <div class="pill">Multimodal Modelling</div>
+            <h3>Prediction and clinical stratification across heterogeneous health data</h3>
+            <p>Combining targeted proteomics, electronic health records, and smartwatch-derived digital biomarkers to improve early prediction and subgroup definition.</p>
+          </article>
+          <article class="feature-card">
+            <div class="pill">Deep Learning</div>
+            <h3>Representation learning for structured and longitudinal clinical signals</h3>
+            <p>Designing deep learning pipelines that learn useful latent structure from multimodal patient data while preserving interpretability and portability.</p>
+          </article>
+          <article class="feature-card">
+            <div class="pill">Deployment Mindset</div>
+            <h3>Cross-cohort evaluation and interpretable outputs</h3>
+            <p>Evaluation spans calibration, explainability, and external validation, including work across UK Biobank and PPMI datasets.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-panel" data-reveal>
+        <div class="section-kicker">Training</div>
+        <h2 class="section-heading">Technical formation across neuroscience, biology, and machine learning.</h2>
+        <div class="timeline-grid">
+          <article class="timeline-card">
+            <div class="meta-label">Education</div>
+            <h3>PhD, Clinical Medicine Research</h3>
+            <p>Imperial College London · 2024-2028</p>
+          </article>
+          <article class="timeline-card">
+            <div class="meta-label">Education</div>
+            <h3>MSc, Translational Neuroscience</h3>
+            <p>Imperial College London · 2022-2023</p>
+          </article>
+          <article class="timeline-card">
+            <div class="meta-label">Education</div>
+            <h3>BSc, Biology</h3>
+            <p>National and Kapodistrian University of Athens · 2017-2022</p>
+          </article>
+          <article class="timeline-card">
+            <div class="meta-label">Advanced Training</div>
+            <h3>Oxford Machine Learning Summer School</h3>
+            <p>University of Oxford · July 2024</p>
+          </article>
+          <article class="timeline-card">
+            <div class="meta-label">Advanced Training</div>
+            <h3>Brain Omics 2.0</h3>
+            <p>Human Technopole, Milan · November 2024</p>
+          </article>
+          <article class="timeline-card">
+            <div class="meta-label">Advanced Training</div>
+            <h3>CCAIM AI and Machine Learning Summer School</h3>
+            <p>University of Cambridge · September to October 2025</p>
+          </article>
+        </div>
+      </section>
     </div>
-  </div>
-</div>
+  </main>
 
-<nav>
-  <div class="inner">
-    <a href="#about">About</a>
-    <a href="#publications">Publications</a>
-    <a href="#research">Research</a>
-    <a href="#activities">Activities</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<div class="container">
-
-  <section id="about">
-    <div class="section-label">About</div>
-    <p class="pull-quote">Applying advanced ML to neurodegenerative disease — from proteomics and wearables to interpretable biomarker discovery.</p>
-    <p>Marirena Bafaloukou is a Research Assistant for Machine Learning for Clinical Data Science at the UK Dementia Research Institute at Imperial College London, where she is also pursuing a PhD in Clinical Medicine Research.</p>
-    <p>Her doctoral work focuses on developing and applying machine learning and deep learning approaches for the early prediction and clinical stratification of Parkinson's Disease. Her research integrates clinical targeted proteomics (Olink and SomaLogic), electronic health record (EHR) data, and smartwatch-derived digital biomarkers to uncover new insights into Parkinson's disease biology.</p>
-    <p>Her earlier research focused on leveraging remote monitoring and in-home sensor data to develop interpretable tools for detecting and managing agitation episodes in patients with dementia — work published in <em>eClinicalMedicine</em> and <em>Alzheimer's &amp; Dementia</em>.</p>
-    <p>Outside academia, Marirena enjoys spending time with her dog, Zizel, swimming, travelling, and exploring global cultures.</p>
-
-    <div class="subsection-label">PhD Project</div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;">Title</div>
-      <div class="row-body"><strong>Multi-modal Machine Learning for the Prediction and Clinical Stratification of Parkinson's Disease</strong></div>
+  <footer class="site-footer">
+    <div class="shell">
+      <span>Marirena Bafaloukou</span>
+      <span>Imperial College London · Brain Sciences</span>
+      <span>London, United Kingdom</span>
     </div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;">Supervisors</div>
-      <div class="row-body"><span>Dr Cynthia Sandor · Prof Payam Barnaghi · Dr Pedro Mediano · Dr Yen Foung Tai</span></div>
-    </div>
+  </footer>
 
-    <div class="subsection-label">Education</div>
-    <div class="row-item">
-      <div class="row-year">2024 – 2028</div>
-      <div class="row-body"><strong>PhD, Clinical Medicine Research</strong><span>Imperial College London · London, UK</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">2022 – 2023</div>
-      <div class="row-body"><strong>MSc, Translational Neuroscience</strong><span>Imperial College London · London, UK</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">2017 – 2022</div>
-      <div class="row-body"><strong>BSc, Biology</strong><span>National and Kapodistrian University of Athens · Greece</span></div>
-    </div>
-
-    <div class="subsection-label">Postgraduate Training</div>
-    <div class="row-item">
-      <div class="row-year">Sep – Oct 2025</div>
-      <div class="row-body"><strong>CCAIM AI and Machine Learning Summer School</strong><span>University of Cambridge</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">Nov 2024</div>
-      <div class="row-body"><strong>Brain Omics 2.0 — Advanced Techniques &amp; Deep Learning for Single-Cell Transcriptomics</strong><span>Human Technopole · Milan, Italy</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">Jul 2024</div>
-      <div class="row-body"><strong>Oxford Machine Learning Summer School</strong><span>University of Oxford · Mathematical Institute</span></div>
-    </div>
-  </section>
-
-  <section id="publications">
-    <div class="section-label">Publications</div>
-
-    <div class="pub">
-      <div class="pub-type">Journal Article · eClinicalMedicine · Feb 2025</div>
-      <h3>An interpretable machine learning tool for in-home monitoring of agitation episodes in people living with dementia: a proof-of-concept study</h3>
-      <p class="pub-meta"><em>eClinicalMedicine</em>, vol. 80 · Elsevier BV · 5 citations</p>
-      <p class="pub-authors"><strong>Bafaloukou M</strong>, Schalkamp A-K, Fletcher-Lloyd N, et al.</p>
-      <a class="doi-link" href="https://doi.org/10.1016/J.ECLINM.2024.103032" target="_blank">DOI: 10.1016/J.ECLINM.2024.103032 →</a>
-    </div>
-
-    <div class="pub">
-      <div class="pub-type">Journal Article · Alzheimer's &amp; Dementia · Dec 2024</div>
-      <h3>Identifying diverse agitation profiles in dementia: Insights from longitudinal in-home monitoring data</h3>
-      <p class="pub-meta"><em>Alzheimer's &amp; Dementia</em>, 20(S8) · Wiley</p>
-      <p class="pub-authors"><strong>Bafaloukou M</strong>, Schalkamp A, Sandor C, et al.</p>
-      <a class="doi-link" href="https://doi.org/10.1002/ALZ.095287" target="_blank">DOI: 10.1002/ALZ.095287 →</a>
-    </div>
-
-    <div class="pub">
-      <div class="pub-type">Preprint · openRxiv · Aug 2024</div>
-      <h3>An Interpretable Machine Learning Tool for In-Home Screening of Agitation Episodes in People Living with Dementia</h3>
-      <p class="pub-authors"><strong>Bafaloukou M</strong>, Schalkamp A-K, Fletcher-Lloyd N, et al.</p>
-      <a class="doi-link" href="https://doi.org/10.1101/2024.07.30.24311178" target="_blank">DOI: 10.1101/2024.07.30.24311178 →</a>
-    </div>
-
-    <div class="subsection-label">Conference Presentations</div>
-
-    <div class="row-item">
-      <div class="row-year">2024</div>
-      <div class="row-body"><strong>Poster · AAIC 2024 (Alzheimer's Association International Conference)</strong><span>Identifying diverse agitation profiles in dementia: Insights from longitudinal in-home monitoring data</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">2024</div>
-      <div class="row-body"><strong>Poster · Connectome 2024</strong><span>An Interpretable Machine Learning Tool for In-Home Screening of Agitation Episodes in People Living with Dementia</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year">2023</div>
-      <div class="row-body"><strong>Poster · Connectome 2023</strong><span>An explainable machine learning approach leveraging sleep patterns and ambient light exposure</span></div>
-    </div>
-
-  <section id="research">
-    <div class="section-label">Current Research</div>
-    <div class="research-grid">
-
-      <div class="r-card">
-        <div class="r-tag">Chapter 1 · Complete</div>
-        <h3>Proteomics-Based Parkinson's Prediction</h3>
-        <p>ML models on UK Biobank plasma proteomics (&gt;52,000 participants), ~0.73 ROC-AUC. Cross-cohort validation on PPMI with SHAP analysis and age-stratified calibration.</p>
-      </div>
-
-      <div class="r-card">
-        <div class="r-tag">Chapter 2 · In Progress</div>
-        <h3>Multimodal EHR + Proteomics Fusion</h3>
-        <p>Deep learning architectures integrating electronic healthcare records and proteomics, with a focus on model interpretability.</p>
-      </div>
-
-      <div class="r-card">
-        <div class="r-tag">Supervision</div>
-        <h3>Sleep, Proteomics &amp; Parkinson's Disease</h3>
-        <p>Investigating causal pathways between sleep disturbances and Parkinson's Disease risk using UK Biobank data, Mendelian Randomisation, and causal ML methods to identify proteomic and digital biomarker mediators.</p>
-      </div>
-
-      <div class="r-card">
-        <div class="r-tag">Supervision</div>
-        <h3>Transcriptomics in REM Behavioural Disorder</h3>
-        <p>Supervising projects on whole blood transcriptome profiling and bulk RNA-Seq workflows to measure alpha-synucleinopathic phenoconversion risk.</p>
-      </div>
-
-      <div class="r-card">
-        <div class="r-tag">Supervision</div>
-        <h3>Single-Nucleus Analysis of Motor Cortex in PD</h3>
-        <p>Exploring single-nucleus transcriptomic signatures in the primary motor cortex of Parkinson's Disease patients to identify disease-relevant cell populations.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="activities">
-    <div class="section-label">Professional Activities</div>
-
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Outreach</div>
-      <div class="row-body"><strong>Healthcare Conference for High School Students</strong><span>15 May 2025 · Notting Hill and Ealing High School</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
-      <div class="row-body"><strong>Bulk RNA-Seq Data Preprocessing Workflows in REM Behavioural Disorder</strong><span>Research Student Project</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Outreach</div>
-      <div class="row-body"><strong>Great Exhibition Road Festival</strong><span>Imperial College London · London</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
-      <div class="row-body"><strong>Whole Blood Transcriptome Profiling in REM Behavioural Disorder — Alpha-Synucleinopathic Phenoconversion Risk</strong><span>Research Student Project</span></div>
-    </div>
-    <div class="row-item">
-      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
-      <div class="row-body"><strong>Single-Nucleus Transcriptomic Analysis of the Primary Motor Cortex in Parkinson's Disease</strong><span>Research Student Project</span></div>
-    </div>
-  </section>
-
-  <section id="teaching">
-    <div class="section-label">Teaching</div>
-    <div class="teach-item">
-      <strong>Real-world Data Coding for Neuroscientists</strong>
-      <span>Preparation of teaching material · Academic Year 2025–2026</span>
-    </div>
-    <div class="teach-item">
-      <strong>Machine Learning for Neuroscience</strong>
-      <span>Preparation of teaching material &amp; Teaching Assistant · Academic Year 2023–2024</span>
-    </div>
-  </section>
-
-  <section id="contact" style="border-bottom:none;">
-    <div class="section-label">Contact</div>
-    <div class="contact-grid">
-      <a class="c-link" href="mailto:marirena.bafaloukou22@imperial.ac.uk">
-        <span class="c-icon">✉</span>
-        <span class="c-text">Email</span>
-        <span class="c-label">marirena.bafaloukou22@imperial.ac.uk</span>
-      </a>
-      <a class="c-link" href="https://orcid.org/0009-0006-1602-9520" target="_blank">
-        <span class="c-icon" style="font-weight:700; color:#a6ce39; font-size:1.1rem; font-family:var(--mono);">iD</span>
-        <span class="c-text">ORCID</span>
-        <span class="c-label">0009-0006-1602-9520</span>
-      </a>
-      <a class="c-link" href="https://www.linkedin.com/in/marirena-bafaloukou-269aa520a/" target="_blank">
-        <span class="c-icon">💼</span>
-        <span class="c-text">LinkedIn</span>
-        <span class="c-label">marirena-bafaloukou</span>
-      </a>
-      <a class="c-link" href="https://profiles.imperial.ac.uk/marirena.bafaloukou22" target="_blank">
-        <span class="c-icon">🏛</span>
-        <span class="c-text">Imperial Profile</span>
-        <span class="c-label">profiles.imperial.ac.uk</span>
-      </a>
-    </div>
-    <p class="address-note">
-      Department of Brain Sciences · Faculty of Medicine<br>
-      Imperial College London · Sir Michael Uren Building · White City Campus · London
-    </p>
-  </section>
-
-</div>
-
-<footer>
-  <div class="container">
-    Marirena Bafaloukou · Imperial College London · Brain Sciences · 2025
-  </div>
-</footer>
-
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('section').forEach(s => observer.observe(s));
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a');
-  const updateNav = () => {
-    let cur = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
-    });
-  };
-  window.addEventListener('scroll', updateNav);
-  updateNav();
-</script>
-
+  <script src="site.js"></script>
 </body>
 </html>
