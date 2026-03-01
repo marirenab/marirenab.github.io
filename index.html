@@ -10,14 +10,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f0f8ff;          /* very soft baby blue background */
-      --ink: #0f1a26;         /* deep navy for readable contrast */
-      --muted: #6b7c8f;       /* muted blue-grey */
-      --accent: #89c2ff;      /* baby blue accent */
-      --accent-light: #e6f3ff;/* pale blue highlight areas */
-      --red: #d46a6a;         /* softened red (less harsh) */
-      --border: #cfe4f7;      /* light blue border */
-      --card: #ffffff;        /* keep white for clean cards */
+      --bg: #e8f4fd;
+      --ink: #0d2137;
+      --muted: #4a7a9b;
+      --accent: #1a7abf;
+      --accent-light: #c8e6f7;
+      --red: #0e6fa3;
+      --border: #b8d9ee;
+      --card: #f0f9ff;
       --mono: 'DM Mono', monospace;
       --serif: 'EB Garamond', serif;
     }
@@ -41,7 +41,6 @@
       padding: 0 2.5rem;
     }
 
-    /* HERO */
     .hero {
       padding: 5rem 0 0;
       animation: rise 0.8s ease both;
@@ -114,7 +113,7 @@
 
     .hero-desc {
       font-size: 1.05rem;
-      color: #3a3228;
+      color: #1a3d58;
       max-width: 560px;
       line-height: 1.7;
     }
@@ -127,11 +126,10 @@
       letter-spacing: 0.06em;
     }
 
-    /* STICKY NAV */
     nav {
       position: sticky;
       top: 0;
-      background: rgba(247,244,239,0.96);
+      background: rgba(232,244,253,0.96);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       margin-top: 3rem;
@@ -163,7 +161,6 @@
       border-bottom-color: var(--accent);
     }
 
-    /* SECTIONS */
     section {
       padding: 4.5rem 0;
       border-bottom: 1px solid var(--border);
@@ -207,7 +204,6 @@
       padding-left: 0.7rem;
     }
 
-    /* ABOUT */
     .pull-quote {
       font-size: 1.15rem;
       font-style: italic;
@@ -218,10 +214,9 @@
       line-height: 1.65;
     }
 
-    #about p { color: #2e281f; margin-bottom: 1rem; }
+    #about p { color: #1a3d58; margin-bottom: 1rem; }
     #about p:last-of-type { margin-bottom: 0; }
 
-    /* ROWS */
     .row-item {
       display: grid;
       grid-template-columns: 120px 1fr;
@@ -254,7 +249,6 @@
       color: var(--muted);
     }
 
-    /* PUBLICATIONS */
     .pub {
       padding: 1.8rem 0;
       border-bottom: 1px solid var(--border);
@@ -305,7 +299,6 @@
       color: white;
     }
 
-    /* RESEARCH CARDS */
     .research-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -322,7 +315,7 @@
     .r-card:hover {
       border-color: var(--accent);
       transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(26,61,107,0.08);
+      box-shadow: 0 8px 24px rgba(26,122,191,0.12);
     }
 
     .r-tag {
@@ -350,7 +343,6 @@
       line-height: 1.6;
     }
 
-    /* TEACHING */
     .teach-item {
       padding: 1.2rem 0;
       border-bottom: 1px solid var(--border);
@@ -372,10 +364,9 @@
       letter-spacing: 0.04em;
     }
 
-    /* CONTACT */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
@@ -429,7 +420,6 @@
       line-height: 1.8;
     }
 
-    /* FOOTER */
     footer {
       padding: 2.5rem 0;
       text-align: center;
@@ -439,13 +429,11 @@
       letter-spacing: 0.08em;
     }
 
-    /* ANIMATIONS */
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* RESPONSIVE */
     @media (max-width: 680px) {
       .hero-grid { grid-template-columns: 1fr; }
       .research-grid { grid-template-columns: 1fr; }
@@ -458,7 +446,6 @@
 <body>
 
 <div class="container">
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-grid">
       <div>
@@ -480,7 +467,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="inner">
     <a href="#about">About</a>
@@ -494,13 +480,23 @@
 
 <div class="container">
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="section-label">About</div>
     <p class="pull-quote">Applying advanced ML to neurodegenerative disease — from proteomics and wearables to interpretable biomarker discovery.</p>
-    <p>Marirena Bafaloukou is a Research Assistant for Machine Learning for Clinical Data Science at the Brain Sciences Department UK Dementia Research Institute at Imperial College London, where she is also pursuing a PhD in Clinical Medicine Research.</p>
-    <p>Her doctoral work focuses on developing and applying advanced machine learning methods to identify predictive and stratification biomarkers for Parkinson's Disease using clinical proteomics, electronic healthcare record data, and smartwatch data. She works with large-scale datasets including the UK Biobank and the PPMI cohort for cross-cohort validation and biomarker discovery.</p>
-    <p>Her earlier research involved leveraging remote monitoring data to build interpretable tools for detecting and managing agitation episodes in patients with dementia — work published in <em>eClinicalMedicine</em> and <em>Alzheimer's & Dementia</em>.</p>
+    <p>Marirena Bafaloukou is a Research Assistant for Machine Learning for Clinical Data Science at the UK Dementia Research Institute at Imperial College London, where she is also pursuing a PhD in Clinical Medicine Research.</p>
+    <p>Her doctoral work focuses on developing and applying machine learning and deep learning approaches for the early prediction and clinical stratification of Parkinson's Disease. Her research integrates clinical targeted proteomics (Olink and SomaLogic), electronic health record (EHR) data, and smartwatch-derived digital biomarkers to uncover new insights into Parkinson's disease biology.</p>
+    <p>Her earlier research focused on leveraging remote monitoring and in-home sensor data to develop interpretable tools for detecting and managing agitation episodes in patients with dementia — work published in <em>eClinicalMedicine</em> and <em>Alzheimer's &amp; Dementia</em>.</p>
+    <p>Outside academia, Marirena enjoys spending time with her dog, Zizel, swimming, travelling, and exploring global cultures.</p>
+
+    <div class="subsection-label">PhD Project</div>
+    <div class="row-item">
+      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;">Title</div>
+      <div class="row-body"><strong>Multi-modal Machine Learning for the Prediction and Clinical Stratification of Parkinson's Disease</strong></div>
+    </div>
+    <div class="row-item">
+      <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;">Supervisors</div>
+      <div class="row-body"><span>Dr Cynthia Sandor · Prof Payam Barnaghi · Dr Pedro Mediano · Dr Yen Foung Tai</span></div>
+    </div>
 
     <div class="subsection-label">Education</div>
     <div class="row-item">
@@ -523,7 +519,7 @@
     </div>
     <div class="row-item">
       <div class="row-year">Nov 2024</div>
-      <div class="row-body"><strong>Brain Omics 2.0 — Advanced Techniques & Deep Learning for Single-Cell Transcriptomics</strong><span>Human Technopole · Milan, Italy</span></div>
+      <div class="row-body"><strong>Brain Omics 2.0 — Advanced Techniques &amp; Deep Learning for Single-Cell Transcriptomics</strong><span>Human Technopole · Milan, Italy</span></div>
     </div>
     <div class="row-item">
       <div class="row-year">Jul 2024</div>
@@ -531,7 +527,6 @@
     </div>
   </section>
 
-  <!-- PUBLICATIONS -->
   <section id="publications">
     <div class="section-label">Publications</div>
 
@@ -544,9 +539,9 @@
     </div>
 
     <div class="pub">
-      <div class="pub-type">Journal Article · Alzheimer's & Dementia · Dec 2024</div>
+      <div class="pub-type">Journal Article · Alzheimer's &amp; Dementia · Dec 2024</div>
       <h3>Identifying diverse agitation profiles in dementia: Insights from longitudinal in-home monitoring data</h3>
-      <p class="pub-meta"><em>Alzheimer's & Dementia</em>, 20(S8) · Wiley</p>
+      <p class="pub-meta"><em>Alzheimer's &amp; Dementia</em>, 20(S8) · Wiley</p>
       <p class="pub-authors"><strong>Bafaloukou M</strong>, Schalkamp A, Sandor C, et al.</p>
       <a class="doi-link" href="https://doi.org/10.1002/ALZ.095287" target="_blank">DOI: 10.1002/ALZ.095287 →</a>
     </div>
@@ -558,9 +553,21 @@
       <a class="doi-link" href="https://doi.org/10.1101/2024.07.30.24311178" target="_blank">DOI: 10.1101/2024.07.30.24311178 →</a>
     </div>
 
-  </section>
+    <div class="subsection-label">Conference Presentations</div>
 
-  <!-- RESEARCH -->
+    <div class="row-item">
+      <div class="row-year">2024</div>
+      <div class="row-body"><strong>Poster · AAIC 2024 (Alzheimer's Association International Conference)</strong><span>Identifying diverse agitation profiles in dementia: Insights from longitudinal in-home monitoring data</span></div>
+    </div>
+    <div class="row-item">
+      <div class="row-year">2024</div>
+      <div class="row-body"><strong>Poster · Connectome 2024</strong><span>An Interpretable Machine Learning Tool for In-Home Screening of Agitation Episodes in People Living with Dementia</span></div>
+    </div>
+    <div class="row-item">
+      <div class="row-year">2023</div>
+      <div class="row-body"><strong>Poster · Connectome 2023</strong><span>An explainable machine learning approach leveraging sleep patterns and ambient light exposure</span></div>
+    </div>
+
   <section id="research">
     <div class="section-label">Current Research</div>
     <div class="research-grid">
@@ -574,23 +581,23 @@
       <div class="r-card">
         <div class="r-tag">Chapter 2 · In Progress</div>
         <h3>Multimodal EHR + Proteomics Fusion</h3>
-        <p>Deep learning architectures integrating electronic heathcare records and proteomics, with a focus on model interpretability.</p>
+        <p>Deep learning architectures integrating electronic healthcare records and proteomics, with a focus on model interpretability.</p>
       </div>
 
       <div class="r-card">
-          <div class="r-tag">Supervision</div>
-          <h3>Sleep, Proteomics & Parkinson's Disease</h3>
-          <p>Investigating causal pathways between sleep disturbances and Parkinson's Disease risk using UK Biobank data, Mendelian Randomisation, and causal ML methods to identify proteomic and digital biomarker mediators.</p>
+        <div class="r-tag">Supervision</div>
+        <h3>Sleep, Proteomics &amp; Parkinson's Disease</h3>
+        <p>Investigating causal pathways between sleep disturbances and Parkinson's Disease risk using UK Biobank data, Mendelian Randomisation, and causal ML methods to identify proteomic and digital biomarker mediators.</p>
       </div>
 
       <div class="r-card">
-        <div class="r-tag">Supervised</div>
+        <div class="r-tag">Supervision</div>
         <h3>Transcriptomics in REM Behavioural Disorder</h3>
         <p>Supervising projects on whole blood transcriptome profiling and bulk RNA-Seq workflows to measure alpha-synucleinopathic phenoconversion risk.</p>
       </div>
 
       <div class="r-card">
-        <div class="r-tag">Supervised</div>
+        <div class="r-tag">Supervision</div>
         <h3>Single-Nucleus Analysis of Motor Cortex in PD</h3>
         <p>Exploring single-nucleus transcriptomic signatures in the primary motor cortex of Parkinson's Disease patients to identify disease-relevant cell populations.</p>
       </div>
@@ -598,7 +605,6 @@
     </div>
   </section>
 
-  <!-- ACTIVITIES -->
   <section id="activities">
     <div class="section-label">Professional Activities</div>
 
@@ -606,68 +612,59 @@
       <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Outreach</div>
       <div class="row-body"><strong>Healthcare Conference for High School Students</strong><span>15 May 2025 · Notting Hill and Ealing High School</span></div>
     </div>
-
     <div class="row-item">
       <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
       <div class="row-body"><strong>Bulk RNA-Seq Data Preprocessing Workflows in REM Behavioural Disorder</strong><span>Research Student Project</span></div>
     </div>
-
     <div class="row-item">
       <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Outreach</div>
       <div class="row-body"><strong>Great Exhibition Road Festival</strong><span>Imperial College London · London</span></div>
     </div>
-
     <div class="row-item">
       <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
       <div class="row-body"><strong>Whole Blood Transcriptome Profiling in REM Behavioural Disorder — Alpha-Synucleinopathic Phenoconversion Risk</strong><span>Research Student Project</span></div>
     </div>
-
     <div class="row-item">
       <div class="row-year" style="color:var(--accent); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Supervision</div>
       <div class="row-body"><strong>Single-Nucleus Transcriptomic Analysis of the Primary Motor Cortex in Parkinson's Disease</strong><span>Research Student Project</span></div>
     </div>
-
   </section>
 
-  <!-- TEACHING -->
   <section id="teaching">
     <div class="section-label">Teaching</div>
-
     <div class="teach-item">
       <strong>Real-world Data Coding for Neuroscientists</strong>
       <span>Preparation of teaching material · Academic Year 2025–2026</span>
     </div>
-
     <div class="teach-item">
       <strong>Machine Learning for Neuroscience</strong>
       <span>Preparation of teaching material &amp; Teaching Assistant · Academic Year 2023–2024</span>
     </div>
-
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" style="border-bottom:none;">
     <div class="section-label">Contact</div>
     <div class="contact-grid">
-
       <a class="c-link" href="mailto:marirena.bafaloukou22@imperial.ac.uk">
         <span class="c-icon">✉</span>
         <span class="c-text">Email</span>
         <span class="c-label">marirena.bafaloukou22@imperial.ac.uk</span>
       </a>
-
       <a class="c-link" href="https://orcid.org/0009-0006-1602-9520" target="_blank">
         <span class="c-icon" style="font-weight:700; color:#a6ce39; font-size:1.1rem; font-family:var(--mono);">iD</span>
         <span class="c-text">ORCID</span>
         <span class="c-label">0009-0006-1602-9520</span>
       </a>
-
+      <a class="c-link" href="https://www.linkedin.com/in/marirena-bafaloukou-269aa520a/" target="_blank">
+        <span class="c-icon">💼</span>
+        <span class="c-text">LinkedIn</span>
+        <span class="c-label">marirena-bafaloukou</span>
+      </a>
       <a class="c-link" href="https://profiles.imperial.ac.uk/marirena.bafaloukou22" target="_blank">
         <span class="c-icon">🏛</span>
         <span class="c-text">Imperial Profile</span>
         <span class="c-label">profiles.imperial.ac.uk</span>
       </a>
-
     </div>
     <p class="address-note">
       Department of Brain Sciences · Faculty of Medicine<br>
@@ -684,21 +681,18 @@
 </footer>
 
 <script>
-  // Scroll-triggered section reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.05 });
   document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-  // Active nav link
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a');
   const updateNav = () => {
     let cur = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
     navLinks.forEach(a => {
-      const active = a.getAttribute('href') === '#' + cur;
-      a.classList.toggle('active', active);
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
     });
   };
   window.addEventListener('scroll', updateNav);
