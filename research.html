@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research | Marirena Bafaloukou | Deep Learning and Representation Learning</title>
+  <title>Research | Marirena Bafaloukou | Case Studies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,38 +31,97 @@
       <section class="page-panel" data-reveal>
         <div class="page-header compact">
           <div>
-            <div class="eyebrow">Research Agenda</div>
-            <h1 class="page-title">From <span>representation learning</span> to risk stratification.</h1>
-            <p class="page-intro">Current projects focus on multimodal machine learning for Parkinson's disease, including deep learning, representation learning, and clinically useful prediction across high-dimensional biomedical data.</p>
+            <div class="eyebrow">Research and Case Studies</div>
+            <h1 class="page-title">Projects with <span>methods</span>, outcomes, and links.</h1>
+            <p class="page-intro">I work on multimodal machine learning for Parkinson's disease and related monitoring problems, and this page is structured as case studies rather than a broad research summary.</p>
           </div>
           <div class="page-note">Supervisors: Dr Cynthia Sandor, Prof Payam Barnaghi, Dr Pedro Mediano, Dr Yen Foung Tai</div>
         </div>
 
-        <div class="stack">
-          <article class="feature-card">
-            <div class="pill">Chapter 1 · Complete</div>
-            <h3>Proteomics-based Parkinson's prediction</h3>
-            <p>Machine learning models trained on UK Biobank plasma proteomics data across more than 52,000 participants, followed by cross-cohort validation on PPMI with SHAP analysis and age-stratified calibration.</p>
+        <div class="case-study" id="flagship-project">
+          <article class="case-panel">
+            <div class="pill">Flagship Case Study</div>
+            <h3>Plasma Proteomics and Machine Learning for Parkinson's Disease Prediction</h3>
+            <p class="project-statement">Parkinson's disease is difficult to diagnose early, and there are no reliable blood-based biomarkers for population screening. This project applies machine learning to plasma protein data from over 50,000 UK Biobank participants to predict Parkinson's disease before clinical diagnosis.</p>
+            <ul class="case-list">
+              <li>Research question: can plasma proteomics support earlier Parkinson's disease prediction, and what do the model errors reveal about disease heterogeneity?</li>
+              <li>Data: UK Biobank plasma proteomics across more than 52,000 participants, with external validation in PPMI.</li>
+              <li>Method: supervised machine learning methods, SHAP-based explanation, age-stratified calibration analysis, and misclassification analysis.</li>
+              <li>Outcome: interpretable risk modelling with explicit transfer checks across cohorts.</li>
+              <li>Insight: false positive predictions systematically resemble one proteomic subtype more than another, revealing that model errors reflect biological overlap rather than random noise.</li>
+              <li>Takeaway: current Parkinson's protein panels may not cleanly distinguish early neurodegeneration from metabolic comorbidity, so future diagnostic tools need to account for disease heterogeneity to be clinically reliable.</li>
+            </ul>
+            <div class="case-links">
+              <a class="text-link" href="publications.html">Outputs</a>
+              <a class="text-link" href="https://github.com/marirenab?tab=repositories" target="_blank" rel="noreferrer">Code</a>
+            </div>
           </article>
-          <article class="feature-card">
-            <div class="pill">Chapter 2 · In Progress</div>
+          <aside class="case-side">
+            <div class="case-metric">52k+</div>
+            <p class="case-caption">Participants in the main proteomics cohort.</p>
+            <div class="case-metric" style="margin-top: 1.2rem;">PPMI</div>
+            <p class="case-caption">External cohort used to test whether the signal carries beyond the main dataset.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-panel" data-reveal>
+        <div class="section-kicker">Project Cards</div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="pill">Project 1</div>
+            <h3>Plasma Proteomics and Machine Learning for Parkinson's Disease Prediction</h3>
+            <p class="project-statement">Predict Parkinson's disease before clinical diagnosis from plasma proteomics and validate the learned signal in PPMI.</p>
+            <ul class="project-list">
+              <li>Data: UK Biobank plasma proteomics across more than 52,000 participants, with external validation in PPMI.</li>
+              <li>Method: supervised machine learning, SHAP-based explanation, age-stratified calibration, and misclassification analysis.</li>
+              <li>Outcome: interpretable risk modelling with explicit transfer checks across cohorts.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#flagship-project">Case Study</a>
+              <a class="text-link" href="publications.html">Outputs</a>
+              <a class="text-link" href="https://github.com/marirenab?tab=repositories" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="pill">Project 2</div>
             <h3>Multimodal EHR and proteomics fusion</h3>
-            <p>Deep learning architectures that combine structured electronic healthcare records with proteomic features, using representation learning to improve subgroup discovery, predictive performance, and interpretability.</p>
+            <p class="project-statement">Fuse EHR and proteomics to learn patient representations for stratification and prediction.</p>
+            <ul class="project-list">
+              <li>Data: structured EHR with targeted proteomics.</li>
+              <li>Method: deep learning and representation learning for multimodal fusion.</li>
+              <li>Outcome: ongoing work on subgroup discovery and interpretable latent structure.</li>
+            </ul>
           </article>
-          <article class="feature-card">
-            <div class="pill">Supervision</div>
+          <article class="project-card">
+            <div class="pill">Project 3</div>
             <h3>Sleep, proteomics, and Parkinson's disease risk</h3>
-            <p>Investigating whether sleep disturbances contribute to Parkinson's risk through proteomic and digital biomarker pathways, using UK Biobank, Mendelian randomisation, and causal machine learning approaches.</p>
+            <p class="project-statement">Test whether sleep disturbances contribute to Parkinson's risk through proteomic and digital biomarker pathways.</p>
+            <ul class="project-list">
+              <li>Data: UK Biobank sleep, proteomics, and related biomarker signals.</li>
+              <li>Method: Mendelian randomisation and causal machine learning.</li>
+              <li>Outcome: ongoing work on causal pathways and mediator discovery.</li>
+            </ul>
           </article>
-          <article class="feature-card">
-            <div class="pill">Supervision</div>
+          <article class="project-card">
+            <div class="pill">Project 4</div>
             <h3>Transcriptomics in REM behavioural disorder</h3>
-            <p>Supervising work on whole blood transcriptome profiling and bulk RNA-seq pipelines to quantify alpha-synucleinopathic phenoconversion risk.</p>
+            <p class="project-statement">Quantify alpha-synucleinopathic phenoconversion risk from whole-blood transcriptome data.</p>
+            <ul class="project-list">
+              <li>Data: whole-blood transcriptome profiles and bulk RNA-seq workflows.</li>
+              <li>Method: transcriptomic preprocessing and downstream modelling pipelines.</li>
+              <li>Outcome: supervised project work on phenoconversion risk estimation.</li>
+            </ul>
           </article>
-          <article class="feature-card">
-            <div class="pill">Supervision</div>
+          <article class="project-card">
+            <div class="pill">Project 5</div>
             <h3>Single-nucleus analysis of motor cortex in Parkinson's disease</h3>
-            <p>Exploring single-nucleus transcriptomic signatures in the primary motor cortex to identify disease-relevant cell populations and molecular programs.</p>
+            <p class="project-statement">Identify disease-relevant cell populations and molecular programs in the primary motor cortex.</p>
+            <ul class="project-list">
+              <li>Data: single-nucleus transcriptomic profiles.</li>
+              <li>Method: cell-type specific analysis and molecular signature discovery.</li>
+              <li>Outcome: supervised project work on disease-relevant cell populations.</li>
+            </ul>
           </article>
         </div>
       </section>
@@ -91,7 +150,7 @@
   <footer class="site-footer">
     <div class="shell">
       <span>Research Page</span>
-      <span>Machine Learning for Parkinson's Disease</span>
+      <span>Case Studies and Project Work</span>
       <span>Imperial College London</span>
     </div>
   </footer>

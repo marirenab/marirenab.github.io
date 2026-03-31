@@ -6,29 +6,534 @@
   <title>Marirena Bafaloukou | Machine Learning and Clinical Data Science</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #18202f;
+      --paper: #f7f9fc;
+      --warm: #eef3f9;
+      --accent: #456f9a;
+      --accent-light: #628dc2;
+      --muted: #5f6b7d;
+      --border: #d7dee8;
+      --border-light: #e7edf4;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Source Sans 3', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --shell: 1080px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(98, 141, 194, 0.08), transparent 32%),
+        linear-gradient(180deg, #fbfcfe 0%, var(--paper) 100%);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .shell { max-width: var(--shell); margin: 0 auto; padding: 0 2rem; }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 249, 252, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .site-header .shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand { display: flex; flex-direction: column; gap: 0; }
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .brand-mark {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .site-nav { display: flex; gap: 2rem; }
+    .site-nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .site-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
+    }
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a:hover::after { width: 100%; }
+    .site-nav a.active { color: var(--ink); }
+    .site-nav a.active::after { width: 100%; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .portrait-card {
+      width: 240px;
+      height: 300px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%);
+      transition: filter 0.6s;
+    }
+    .portrait-card:hover img { filter: grayscale(0%); }
+
+    .hero-copy { padding-top: 0.25rem; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 400;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      max-width: 620px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .pill--accent {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(69, 111, 154, 0.08);
+    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.7rem 1.5rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 6px;
+      transition: all 0.3s var(--ease);
+      letter-spacing: 0.01em;
+    }
+    .button:hover { background: var(--accent); transform: translateY(-1px); }
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.7rem 1.5rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.3s var(--ease);
+    }
+    .button-secondary:hover {
+      border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    /* ── Stats Strip ── */
+    .stats-strip {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .stat-card {
+      background: var(--paper);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .section-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Profile Split ── */
+    .profile-split {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: start;
+    }
+    .quote-block {
+      border-left: 2px solid var(--accent);
+      padding: 1.5rem 1.5rem 1.5rem 1.8rem;
+      background: var(--warm);
+      border-radius: 0 6px 6px 0;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* ── Project Cards ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      background: var(--paper);
+      transition: all 0.35s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(69, 111, 154, 0.08);
+      transform: translateY(-2px);
+    }
+    .project-card .pill { align-self: flex-start; margin-bottom: 1rem; }
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+    .project-statement {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .project-details {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .project-details li {
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .project-details li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+    .project-links { display: flex; gap: 1.25rem; margin-top: auto; }
+    .text-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .text-link:hover { color: var(--accent-light); }
+    .text-link::after {
+      content: '→';
+      font-size: 0.85em;
+      transition: transform 0.2s;
+    }
+    .text-link:hover::after { transform: translateX(2px); }
+
+    /* ── Case Study ── */
+    .case-study {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .case-panel {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem;
+    }
+    .case-panel h3 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .case-panel .project-statement { margin-bottom: 1.5rem; }
+    .case-list { margin-bottom: 1.5rem; }
+    .case-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.45rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .case-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .case-side {
+      padding: 2rem;
+      background: var(--warm);
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+    }
+    .case-metric {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .case-caption {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-top: 0.4rem;
+    }
+    .case-side .case-metric + .case-caption { margin-bottom: 1.8rem; }
+    .case-side .case-caption:last-child { margin-bottom: 0; }
+
+    /* ── Strengths ── */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .feature-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(69, 111, 154, 0.08);
+    }
+    .feature-card .pill { display: inline-block; margin-bottom: 1rem; }
+    .feature-card h3 {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Tool Banner ── */
+    .tool-banner {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+    .site-footer .shell {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── Reveal Animation ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .portrait-card { width: 180px; height: 225px; }
+      .hero h1 { font-size: 2rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-grid { grid-template-columns: 1fr; }
+      .case-study { grid-template-columns: 1fr; }
+      .strengths-grid { grid-template-columns: 1fr; }
+      .profile-split { grid-template-columns: 1fr; gap: 2rem; }
+      .tool-banner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .site-header .shell { height: 56px; }
+      .site-nav { gap: 1rem; }
+      .site-nav a { font-size: 0.78rem; }
+      .brand-name { font-size: 0.95rem; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .hero h1 { font-size: 1.65rem; }
+      .section { padding: 3rem 0; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .site-footer .shell { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
 </head>
-<body data-page="home">
+<body data-page="home" id="top">
+
   <header class="site-header">
     <div class="shell">
-      <a class="brand" href="index.html" aria-label="Homepage">
+      <a class="brand" href="#top" aria-label="Homepage">
         <span class="brand-mark">Machine Learning · Health Data</span>
         <span class="brand-name">Marirena Bafaloukou</span>
       </a>
       <nav class="site-nav" aria-label="Main">
-        <a href="index.html" data-page="home">Home</a>
-        <a href="research.html" data-page="research">Research</a>
-        <a href="publications.html" data-page="publications">Publications</a>
-        <a href="tools.html" data-page="tools">Tools</a>
-        <a href="contact.html" data-page="contact">Contact</a>
+        <a href="#top" class="active" data-page="home">Home</a>
+        <a href="#projects" data-page="research">Research</a>
+        <a href="#publications" data-page="publications">Publications</a>
+        <a href="#tools" data-page="tools">Tools</a>
+        <a href="#contact" data-page="contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="shell">
-      <section class="hero-panel" data-reveal>
+  <main>
+    <!-- Hero -->
+    <section class="hero" data-reveal>
+      <div class="shell">
         <div class="hero-grid">
           <div class="portrait-wrap">
             <div class="portrait-card">
@@ -36,137 +541,279 @@
             </div>
           </div>
           <div class="hero-copy">
-            <div class="eyebrow">Machine Learning, Deep Learning, and Clinical AI</div>
-            <h1>Building <span>deep learning</span> and representation learning systems for clinical data.</h1>
+            <div class="eyebrow">Machine Learning · Deep Learning · Clinical Data Science</div>
+            <h1>I build <strong>deep learning</strong> and <strong>representation learning</strong> systems for clinical data.</h1>
             <p class="hero-lead">
-              Marirena Bafaloukou develops machine learning systems across proteomics, electronic health records, and wearable data, with a focus on deep learning, representation learning, risk prediction, and biomarker discovery for Parkinson's disease.
+              PhD student at Imperial College London working across proteomics, electronic health records, and wearable data to build predictive, interpretable models for Parkinson's disease and related clinical monitoring problems.
             </p>
             <div class="hero-meta">
-              <div class="pill">Multimodal ML · Deep Learning</div>
-              <div class="pill">ORCID 0009-0006-1602-9520</div>
-              <div class="pill">Representation Learning · Clinical Data Science</div>
+              <span class="pill">Multimodal ML</span>
+              <span class="pill">Deep Learning</span>
+              <span class="pill">Representation Learning</span>
+              <span class="pill">Clinical Data Science</span>
+              <span class="pill pill--accent">ORCID 0009-0006-1602-9520</span>
             </div>
             <div class="hero-actions">
-              <a class="button" href="research.html">Explore Research</a>
-              <a class="button-secondary" href="publications.html">View Publications</a>
-              <a class="button-secondary" href="tools.html">View Tools</a>
+              <a class="button" href="#flagship-project">Flagship Project</a>
+              <a class="button-secondary" href="#publications">Publications</a>
+              <a class="button-secondary" href="#tools">Tools</a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-panel" data-reveal>
+    <!-- Stats -->
+    <section class="stats-strip" data-reveal>
+      <div class="shell">
         <div class="stats-grid">
           <article class="stat-card">
-            <div class="stat-value">52k+</div>
-            <p class="stat-label">Participants in large-scale proteomics modelling for Parkinson's prediction</p>
+            <div class="stat-value">Modalities</div>
+            <p class="stat-label">Targeted proteomics, electronic healthcare records, wearable data, and remote monitoring data</p>
           </article>
           <article class="stat-card">
-            <div class="stat-value">3</div>
-            <p class="stat-label">Core data modalities: proteomics, electronic health records, and wearables</p>
+            <div class="stat-value">Datasets</div>
+            <p class="stat-label">UK Biobank, Parkinson's Disease Progression Initiative, Global Neurodegeneration Proteomics Consortium, and the Minder Study</p>
           </article>
           <article class="stat-card">
-            <div class="stat-value">2024</div>
-            <p class="stat-label">Start of the Imperial College London PhD program</p>
+            <div class="stat-value">Publications</div>
+            <p class="stat-label">The Lancet eClinicalMedicine and Alzheimer's &amp; Dementia</p>
           </article>
           <article class="stat-card">
-            <div class="stat-value">2</div>
-            <p class="stat-label">Peer-reviewed publications including The Lancet eClinicalMedicine</p>
+            <div class="stat-value">Tools</div>
+            <p class="stat-label">Live interactive demos and project-linked tooling, including the Agitation Monitoring demo on Hugging Face Spaces</p>
           </article>
         </div>
+      </div>
+    </section>
 
-        <div class="grid-split">
+    <!-- Profile -->
+    <section class="section" data-reveal id="projects">
+      <div class="shell">
+        <div class="profile-split">
           <div>
             <div class="section-kicker">Profile</div>
-            <h2 class="section-heading">Machine learning for high-value biomedical data.</h2>
-            <p class="page-intro">
-              Her work focuses on production-minded modelling problems in healthcare data: multimodal prediction, clinical stratification, deep learning architectures, and representation learning for complex patient signals. Earlier projects in dementia monitoring produced interpretable models for remote sensing and longitudinal behavioural data.
+            <p class="section-intro">
+              I work on modelling problems where the artifact matters as much as the idea: calibrated prediction, multimodal fusion, interpretable outputs, and tools that can be inspected through papers, demos, and case studies rather than abstract claims.
             </p>
           </div>
           <aside class="quote-block">
-            Machine learning across proteomics, wearables, and health records, with an emphasis on models that can generalize, explain, and transfer.
+            Proteomics, wearables, and health records — turned into concrete outputs: papers, validated models, and live demos.
           </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-panel" data-reveal>
-        <div class="section-kicker">Highlights</div>
+    <!-- Projects -->
+    <section class="section" data-reveal>
+      <div class="shell">
+        <div class="section-kicker">Projects</div>
+        <h2 class="section-heading">Selected projects and case studies.</h2>
+        <p class="section-intro">Research spanning predictive modelling, deep learning, and clinical translation.</p>
+        <div class="project-grid">
+
+          <article class="project-card">
+            <span class="pill pill--accent">Flagship</span>
+            <h3>Plasma Proteomics and Machine Learning for Parkinson's Disease Prediction</h3>
+            <p class="project-statement">Develop machine learning approaches for Parkinson's disease prediction from plasma proteomics and evaluate how the signal generalizes across datasets.</p>
+            <ul class="project-details">
+              <li>Large-scale plasma proteomics data, with external validation in an independent cohort.</li>
+              <li>Supervised machine learning, explainability analysis, calibration checks, and model error analysis.</li>
+              <li>Interpretable risk modelling with attention to robustness and generalizability.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#flagship-project">Case Study</a>
+              <a class="text-link" href="#publications">Outputs</a>
+              <a class="text-link" href="https://github.com/marirenab?tab=repositories" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="pill">Deep Learning</span>
+            <h3>Multimodal EHR + Proteomics Fusion</h3>
+            <p class="project-statement">Learn shared patient representations from structured EHR and proteomics to improve subgroup discovery and prediction.</p>
+            <ul class="project-details">
+              <li>Longitudinal EHR plus targeted proteomics.</li>
+              <li>Deep learning and representation learning for multimodal fusion.</li>
+              <li>Ongoing work on stratification and interpretable latent structure.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#flagship-project">Project Page</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="pill">Tool</span>
+            <h3>Agitation Monitoring Demo</h3>
+            <p class="project-statement">Detect and inspect agitation episodes in dementia using remote monitoring signals and an interactive demo.</p>
+            <ul class="project-details">
+              <li>In-home monitoring and longitudinal behavioural sensing.</li>
+              <li>Interpretable ML for episode detection.</li>
+              <li>Publication in The Lancet eClinicalMedicine and a live Hugging Face demo.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#tools">Demo Page</a>
+              <a class="text-link" href="https://huggingface.co/spaces/marirena/AgitationMonitoring?logs=build" target="_blank" rel="noreferrer">Live Demo</a>
+              <a class="text-link" href="#publications">Paper</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="pill">Remote Monitoring</span>
+            <h3>Agitation Profiles in Dementia</h3>
+            <p class="project-statement">Characterize heterogeneous agitation patterns from longitudinal in-home monitoring data.</p>
+            <ul class="project-details">
+              <li>Repeated in-home monitoring measurements over time.</li>
+              <li>Longitudinal profiling and interpretable analysis.</li>
+              <li>Distinct agitation profiles reported in Alzheimer's &amp; Dementia.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#publications">Paper</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="section" data-reveal id="flagship-project">
+      <div class="shell">
+        <div class="section-kicker">Flagship Project</div>
+        <div class="case-study">
+          <article class="case-panel">
+            <span class="pill pill--accent">Parkinson's Disease</span>
+            <h3>Plasma Proteomics and Machine Learning for Parkinson's Disease Prediction</h3>
+            <p class="project-statement">This project explores whether plasma proteomics can support Parkinson's disease prediction and whether machine learning models can recover clinically meaningful signal from large-scale biomedical data.</p>
+            <ul class="case-list">
+              <li>Research question: can plasma proteomics contribute useful predictive signal for Parkinson's disease, and what can model behaviour reveal about heterogeneity in the data?</li>
+              <li>Large-scale plasma proteomics data, with additional validation in an independent cohort.</li>
+              <li>Supervised machine learning, explainability analysis, calibration checks, and error analysis.</li>
+              <li>The project focuses on interpretability, generalizability, and understanding where models succeed or struggle.</li>
+              <li>Overall, the work is aimed at informing more reliable biomarker-driven prediction tools.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="#flagship-project">Read Case Study</a>
+              <a class="text-link" href="#publications">Outputs</a>
+              <a class="text-link" href="https://github.com/marirenab?tab=repositories" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+          <aside class="case-side">
+            <div class="case-metric">52k+</div>
+            <p class="case-caption">Participants in the main proteomics cohort.</p>
+            <div class="case-metric">PPMI</div>
+            <p class="case-caption">Independent cohort used for additional validation.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strengths -->
+    <section class="section" data-reveal>
+      <div class="shell">
+        <div class="section-kicker">What I Build</div>
         <h2 class="section-heading">Core strengths across modelling, data fusion, and translation.</h2>
-        <div class="card-grid">
+        <p class="section-intro">Technical depth paired with a deployment mindset — from model architecture to cross-cohort evaluation.</p>
+        <div class="strengths-grid">
           <article class="feature-card">
-            <div class="pill">Multimodal Modelling</div>
+            <span class="pill">Multimodal Modelling</span>
             <h3>Prediction and clinical stratification across heterogeneous health data</h3>
             <p>Combining targeted proteomics, electronic health records, and smartwatch-derived digital biomarkers to improve early prediction and subgroup definition.</p>
           </article>
           <article class="feature-card">
-            <div class="pill">Deep Learning</div>
+            <span class="pill">Deep Learning</span>
             <h3>Representation learning for structured and longitudinal clinical signals</h3>
             <p>Designing deep learning pipelines that learn useful latent structure from multimodal patient data while preserving interpretability and portability.</p>
           </article>
           <article class="feature-card">
-            <div class="pill">Deployment Mindset</div>
+            <span class="pill">Deployment Mindset</span>
             <h3>Cross-cohort evaluation and interpretable outputs</h3>
-            <p>Evaluation spans calibration, explainability, and external validation, including work across UK Biobank and PPMI datasets.</p>
+            <p>Evaluation spans calibration, explainability, and external validation across large-scale biomedical datasets.</p>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-panel" data-reveal>
+    <!-- Tool Feature -->
+    <section class="section" data-reveal id="tools">
+      <div class="shell">
         <div class="section-kicker">Featured Tool</div>
         <h2 class="section-heading">Agitation Monitoring demo.</h2>
-        <div class="grid-split">
+        <div class="tool-banner">
           <div>
-            <p class="page-intro">
-              A live tool for agitation monitoring, built from the same line of work as the dementia monitoring publications. It is now linked directly from the site as a practical project alongside the publication record.
+            <p class="section-intro" style="margin-bottom: 1.5rem;">
+              A live tool for agitation monitoring, built from the same line of work as the dementia monitoring publications. It sits here as a practical artifact, not just a citation.
             </p>
             <div class="hero-actions">
-              <a class="button" href="tools.html">Open Tools Page</a>
+              <a class="button" href="https://huggingface.co/spaces/marirena/AgitationMonitoring?logs=build" target="_blank" rel="noreferrer">Open Tool</a>
               <a class="button-secondary" href="https://huggingface.co/spaces/marirena/AgitationMonitoring?logs=build" target="_blank" rel="noreferrer">Launch Demo</a>
             </div>
           </div>
           <aside class="quote-block">
-            A live demo makes the research more concrete than a publication list alone.
+            Agitation Monitoring is available both as a publication and as a live demo.
           </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-panel" data-reveal>
-        <div class="section-kicker">Training</div>
-        <h2 class="section-heading">Technical formation across neuroscience, biology, and machine learning.</h2>
-        <div class="timeline-grid">
-          <article class="timeline-card">
-            <div class="meta-label">Education</div>
-            <h3>PhD, Clinical Medicine Research</h3>
-            <p>Imperial College London · 2024-2028</p>
+    <section class="section" data-reveal id="publications">
+      <div class="shell">
+        <div class="section-kicker">Publications</div>
+        <h2 class="section-heading">Selected papers and presentations.</h2>
+        <p class="section-intro">A short publication list so the strongest outputs are visible inside this one standalone page.</p>
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="pill pill--accent">Journal Article · 2025</span>
+            <h3>An interpretable machine learning tool for in-home monitoring of agitation episodes in people living with dementia</h3>
+            <p class="project-statement"><em>The Lancet eClinicalMedicine</em>, volume 80.</p>
+            <ul class="project-details">
+              <li>Proof-of-concept study on in-home monitoring of agitation episodes in dementia.</li>
+              <li>Directly connected to the live Agitation Monitoring demo featured above.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="https://doi.org/10.1016/J.ECLINM.2024.103032" target="_blank" rel="noreferrer">Paper</a>
+              <a class="text-link" href="https://huggingface.co/spaces/marirena/AgitationMonitoring?logs=build" target="_blank" rel="noreferrer">Demo</a>
+            </div>
           </article>
-          <article class="timeline-card">
-            <div class="meta-label">Education</div>
-            <h3>MSc, Translational Neuroscience</h3>
-            <p>Imperial College London · 2022-2023</p>
-          </article>
-          <article class="timeline-card">
-            <div class="meta-label">Education</div>
-            <h3>BSc, Biology</h3>
-            <p>National and Kapodistrian University of Athens · 2017-2022</p>
-          </article>
-          <article class="timeline-card">
-            <div class="meta-label">Advanced Training</div>
-            <h3>Oxford Machine Learning Summer School</h3>
-            <p>University of Oxford · July 2024</p>
-          </article>
-          <article class="timeline-card">
-            <div class="meta-label">Advanced Training</div>
-            <h3>Brain Omics 2.0</h3>
-            <p>Human Technopole, Milan · November 2024</p>
-          </article>
-          <article class="timeline-card">
-            <div class="meta-label">Advanced Training</div>
-            <h3>CCAIM AI and Machine Learning Summer School</h3>
-            <p>University of Cambridge · September to October 2025</p>
+          <article class="project-card">
+            <span class="pill">Journal Article · 2024</span>
+            <h3>Identifying diverse agitation profiles in dementia: Insights from longitudinal in-home monitoring data</h3>
+            <p class="project-statement"><em>Alzheimer's &amp; Dementia</em>, 20(S8).</p>
+            <ul class="project-details">
+              <li>Longitudinal in-home monitoring data used to identify distinct agitation profiles.</li>
+              <li>Companion output to the agitation monitoring tool and broader dementia work.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="https://doi.org/10.1002/ALZ.095287" target="_blank" rel="noreferrer">Paper</a>
+            </div>
           </article>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal id="contact">
+      <div class="shell">
+        <div class="section-kicker">Contact</div>
+        <h2 class="section-heading">Get in touch.</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="pill">Email</span>
+            <h3><a href="mailto:marirena.bafaloukou22@imperial.ac.uk">marirena.bafaloukou22@imperial.ac.uk</a></h3>
+            <p class="project-statement">Primary academic contact for collaboration and research enquiries.</p>
+          </article>
+          <article class="project-card">
+            <span class="pill">Profiles</span>
+            <h3>Online links</h3>
+            <div class="project-links" style="margin-top: 0.25rem;">
+              <a class="text-link" href="https://orcid.org/0009-0006-1602-9520" target="_blank" rel="noreferrer">ORCID</a>
+              <a class="text-link" href="https://www.linkedin.com/in/marirena-bafaloukou-269aa520a/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="text-link" href="https://profiles.imperial.ac.uk/marirena.bafaloukou22" target="_blank" rel="noreferrer">Imperial</a>
+              <a class="text-link" href="https://github.com/marirenab?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -177,6 +824,38 @@
     </div>
   </footer>
 
-  <script src="site.js"></script>
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav for a single-page portfolio
+    const sections = ['top', 'projects', 'flagship-project', 'tools', 'publications', 'contact']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    const navLinks = document.querySelectorAll('.site-nav a');
+
+    const setActive = () => {
+      let current = 'top';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 140) current = section.id;
+      });
+      navLinks.forEach(link => {
+        const target = link.getAttribute('href').replace('#', '');
+        link.classList.toggle('active', target === current);
+      });
+    };
+
+    window.addEventListener('scroll', setActive);
+    setActive();
+  </script>
 </body>
 </html>
