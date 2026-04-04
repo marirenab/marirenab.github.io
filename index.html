@@ -29,6 +29,8 @@
       --warm: #eef3f9;
       --accent: #456f9a;
       --accent-light: #628dc2;
+      --accent-strong: #2f5f97;
+      --accent-soft: #dfeaf7;
       --muted: #5f6b7d;
       --border: #d7dee8;
       --border-light: #e7edf4;
@@ -182,16 +184,17 @@
       font-family: var(--mono);
       font-size: 0.68rem;
       padding: 0.35rem 0.75rem;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(69, 111, 154, 0.18);
       border-radius: 100px;
-      color: var(--muted);
+      color: var(--accent-strong);
+      background: var(--accent-soft);
       letter-spacing: 0.02em;
       white-space: nowrap;
     }
     .pill--accent {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(69, 111, 154, 0.08);
+      border-color: var(--accent-strong);
+      color: var(--accent-strong);
+      background: rgba(69, 111, 154, 0.14);
     }
 
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
@@ -202,9 +205,10 @@
       font-family: var(--sans);
       font-size: 0.85rem;
       font-weight: 600;
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--accent-strong);
+      color: #ffffff;
       border-radius: 6px;
+      box-shadow: 0 10px 28px rgba(47, 95, 151, 0.22);
       transition: all 0.3s var(--ease);
       letter-spacing: 0.01em;
     }
@@ -230,19 +234,20 @@
     /* ── Stats Strip ── */
     .stats-strip {
       padding: 3rem 0;
+      background: linear-gradient(180deg, rgba(223, 234, 247, 0.58), rgba(238, 243, 249, 0.72));
       border-bottom: 1px solid var(--border);
     }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      background: var(--border);
+      background: rgba(69, 111, 154, 0.12);
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
     }
     .stat-card {
-      background: var(--paper);
+      background: rgba(251, 253, 255, 0.96);
       padding: 1.8rem 1.5rem;
       text-align: center;
     }
